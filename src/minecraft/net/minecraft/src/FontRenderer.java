@@ -740,7 +740,7 @@ public class FontRenderer
             return 4;
         }
         else if(ThaiFixes.isSpecialThaiChar1(par1)){
-        	return -1;
+        	return 0;
         }
         else
         {
