@@ -89,8 +89,7 @@ public class GuiCommandBlock extends GuiScreen
      */
     protected void keyTyped(char par1, int par2)
     {
-    	par1 = ThaiFixes.checkKeyToThaiChar(par1);
-    	
+    	par1 = ThaiFixes.covertToThai(par1); //ThaiFixes
         this.commandTextField.textboxKeyTyped(par1, par2);
         ((GuiButton)this.controlList.get(0)).enabled = this.commandTextField.getText().trim().length() > 0;
 

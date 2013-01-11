@@ -76,8 +76,7 @@ public class GuiChat extends GuiScreen
      */
     protected void keyTyped(char par1, int par2)
     {
-    	par1 = ThaiFixes.checkKeyToThaiChar(par1);
-    	
+    	par1 = ThaiFixes.covertToThai(par1); //ThaiFixes
         this.field_73905_m = false;
 
         if (par2 == 15)

@@ -73,8 +73,7 @@ public class GuiRenameWorld extends GuiScreen
      */
     protected void keyTyped(char par1, int par2)
     {
-    	par1 = ThaiFixes.checkKeyToThaiChar(par1);
-    	
+    	par1 = ThaiFixes.covertToThai(par1); //ThaiFixes
         this.theGuiTextField.textboxKeyTyped(par1, par2);
         ((GuiButton)this.controlList.get(0)).enabled = this.theGuiTextField.getText().trim().length() > 0;
 

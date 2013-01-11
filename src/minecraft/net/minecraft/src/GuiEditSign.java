@@ -82,8 +82,7 @@ public class GuiEditSign extends GuiScreen
      */
     protected void keyTyped(char par1, int par2)
     {
-    	par1 = ThaiFixes.checkKeyToThaiChar(par1);
-    	
+    	par1 = ThaiFixes.covertToThai(par1); //ThaiFixes
         if (par2 == 200)
         {
             this.editLine = this.editLine - 1 & 3;
@@ -99,7 +98,7 @@ public class GuiEditSign extends GuiScreen
             this.entitySign.signText[this.editLine] = this.entitySign.signText[this.editLine].substring(0, this.entitySign.signText[this.editLine].length() - 1);
         }
 
-        if (allowedCharacters.indexOf(par1) >= 0 && this.entitySign.signText[this.editLine].length() < 15 || ThaiFixes.isThaiChar(par1))
+        if (allowedCharacters.indexOf(par1) >= 0 && this.entitySign.signText[this.editLine].length() < 15/* ThaiFixes start */ || ThaiFixes.isThaiChar(par1)/* ThaiFixes end */)
         {
             this.entitySign.signText[this.editLine] = this.entitySign.signText[this.editLine] + par1;
         }

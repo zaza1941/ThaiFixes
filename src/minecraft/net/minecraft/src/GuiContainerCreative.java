@@ -236,8 +236,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer
      */
     protected void keyTyped(char par1, int par2)
     {
-    	par1 = ThaiFixes.checkKeyToThaiChar(par1);
-    	
+    	par1 = ThaiFixes.covertToThai(par1); //ThaiFixes
         if (selectedTabIndex != CreativeTabs.tabAllSearch.getTabIndex())
         {
             if (Keyboard.isKeyDown(this.mc.gameSettings.keyBindChat.keyCode))

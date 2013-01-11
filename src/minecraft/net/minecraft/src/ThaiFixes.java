@@ -4,61 +4,20 @@ public class ThaiFixes {
 	
 	public static boolean isThaiChar(char par1)
 	{
-		if(par1 >= '¡' && par1 <= 'û')
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		return par1 >= '¡' && par1 <= 'û';
 	}
 	
-	public static boolean isSpecialThaiChar1(char par1)
+	public static boolean isSpecialThaiChar(char par1)
 	{
-		String SpecialArray = "ÑÔÕÖ×ØÙÚçèéêëìíî";
-		if(SpecialArray.indexOf(par1) < 0)
-		{
-			return false;
-		}
-		else
-		{
-			return true;
-		}
+		return !("ÑÔÕÖ×ØÙÚçèéêëìíî".indexOf(par1) < 0);
+	}
+	public static char covertToUnicode(char par1)
+	{
+		return (char)((int)par1 + 3424);
 	}
 	
-	public static boolean isSpecialThaiChar2(char par1)
+	public static char covertToThai(char par1)
 	{
-		String SpecialArray = "Ó";
-		if(SpecialArray.indexOf(par1) < 0)
-		{
-			return false;
-		}
-		else
-		{
-			return true;
-		}
-	}
-	
-	public static int uncToKeyTypeInt(char par1)
-	{
-		int a1 = (int)par1;
-		return a1 - 3424;
-	}
-	
-	public static char CharKeyTypeToUncChar(char par1)
-	{
-		int a1 = (int)par1;
-		int aa1 = a1 + 3424;
-		return (char)aa1;
-	}
-	
-	public static char checkKeyToThaiChar(char par1)
-	{
-		if(isThaiChar(CharKeyTypeToUncChar(par1)))
-    	{
-    		return CharKeyTypeToUncChar(par1);
-    	}
-		return par1;
+		return isThaiChar(covertToUnicode(par1)) ? covertToUnicode(par1) : par1;
 	}
 }

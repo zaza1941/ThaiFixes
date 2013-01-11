@@ -104,8 +104,7 @@ public class GuiRepair extends GuiContainer implements ICrafting
      */
     protected void keyTyped(char par1, int par2)
     {
-    	par1 = ThaiFixes.checkKeyToThaiChar(par1);
-    	
+    	par1 = ThaiFixes.covertToThai(par1); //ThaiFixes
         if (this.itemNameField.textboxKeyTyped(par1, par2))
         {
             this.repairContainer.updateItemName(this.itemNameField.getText());

@@ -211,10 +211,6 @@ public class FontRenderer
      */
     private float renderCharAtPos(int par1, char par2, boolean par3)
     {
-    	if(ThaiFixes.isThaiChar(par2)){
-    		return renderThaiUnicodeChar(par2,par3);
-    	}
-    	
         return par2 == 32 ? 4.0F : (par1 > 0 && !this.unicodeFlag ? this.renderDefaultChar(par1 + 32, par3) : this.renderUnicodeChar(par2, par3));
     }
 
@@ -291,54 +287,11 @@ public class FontRenderer
                 GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.glyphTextureName[var3]);
                 this.boundTextureName = this.glyphTextureName[var3];
             }
-
-            int var4 = this.glyphWidth[par1] >>> 4;
-            int var5 = this.glyphWidth[par1] & 15;
-            float var6 = (float)var4;
-            float var7 = (float)(var5 + 1);
-            float var8 = (float)(par1 % 16 * 16) + var6;
-            float var9 = (float)((par1 & 255) / 16 * 16);
-            float var10 = var7 - var6 - 0.02F;
-            float var11 = par2 ? 1.0F : 0.0F;
-            GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
-            GL11.glTexCoord2f(var8 / 256.0F, var9 / 256.0F);
-            GL11.glVertex3f(this.posX + var11, this.posY, 0.0F);
-            GL11.glTexCoord2f(var8 / 256.0F, (var9 + 15.98F) / 256.0F);
-            GL11.glVertex3f(this.posX - var11, this.posY + 7.99F, 0.0F);
-            GL11.glTexCoord2f((var8 + var10) / 256.0F, var9 / 256.0F);
-            GL11.glVertex3f(this.posX + var10 / 2.0F + var11, this.posY, 0.0F);
-            GL11.glTexCoord2f((var8 + var10) / 256.0F, (var9 + 15.98F) / 256.0F);
-            GL11.glVertex3f(this.posX + var10 / 2.0F - var11, this.posY + 7.99F, 0.0F);
-            GL11.glEnd();
-            return (var7 - var6) / 2.0F + 1.0F;
-        }
-    }
-    
-    private float renderThaiUnicodeChar(char par1, boolean par2)
-    {
-        if (this.glyphWidth[par1] == 0)
-        {
-            return 0.0F;
-        }
-        else
-        {
-            int var3 = par1 / 256;
-
-            if (this.glyphTextureName[var3] == 0)
-            {
-                this.loadGlyphTexture(var3);
-            }
-
-            if (this.boundTextureName != this.glyphTextureName[var3])
-            {
-                GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.glyphTextureName[var3]);
-                this.boundTextureName = this.glyphTextureName[var3];
-            }
-
-            if(ThaiFixes.isSpecialThaiChar1(par1)){
+            /* ThaiFixes start */
+            if(ThaiFixes.isSpecialThaiChar(par1)){
             	posX -= 4F;
             }
-            
+            /*ThaiFixes end */
             int var4 = this.glyphWidth[par1] >>> 4;
             int var5 = this.glyphWidth[par1] & 15;
             float var6 = (float)var4;
@@ -731,6 +684,11 @@ public class FontRenderer
      */
     public int getCharWidth(char par1)
     {
+    	/* ThaiFixes start */
+    	if(ThaiFixes.isSpecialThaiChar(par1)){
+    		return 0;
+    	}
+    	/* ThaiFixes end */
         if (par1 == 167)
         {
             return -1;
@@ -738,9 +696,6 @@ public class FontRenderer
         else if (par1 == 32)
         {
             return 4;
-        }
-        else if(ThaiFixes.isSpecialThaiChar1(par1)){
-        	return 0;
         }
         else
         {
@@ -974,7 +929,7 @@ public class FontRenderer
 
                         if (var9 != 108 && var9 != 76)
                         {
-                            if (var9 == 114 || var9 == 82)
+                            if (var9 == 114 || var9 == 82 || isFormatColor(var9))
                             {
                                 var7 = false;
                             }

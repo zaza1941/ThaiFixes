@@ -399,8 +399,7 @@ public class GuiCreateWorld extends GuiScreen
      */
     protected void keyTyped(char par1, int par2)
     {
-    	par1 = ThaiFixes.checkKeyToThaiChar(par1);
-    	
+    	par1 = ThaiFixes.covertToThai(par1); //ThaiFixes
         if (this.textboxWorldName.isFocused() && !this.moreOptions)
         {
             this.textboxWorldName.textboxKeyTyped(par1, par2);

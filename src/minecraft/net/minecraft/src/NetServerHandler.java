@@ -930,7 +930,7 @@ public class NetServerHandler extends NetHandler
                 {
                     for (var6 = 0; var6 < par1Packet130UpdateSign.signLines[var8].length(); ++var6)
                     {
-                        if (ChatAllowedCharacters.allowedCharacters.indexOf(par1Packet130UpdateSign.signLines[var8].charAt(var6)) < 0 && (!ThaiFixes.isThaiChar(par1Packet130UpdateSign.signLines[var8].charAt(var6))))
+                        if (ChatAllowedCharacters.allowedCharacters.indexOf(par1Packet130UpdateSign.signLines[var8].charAt(var6)) < 0/* ThaiFixes start */ && !(ThaiFixes.isThaiChar(par1Packet130UpdateSign.signLines[var8].charAt(var6)))/* ThaiFixes end */)
                         {
                             var5 = false;
                         }
